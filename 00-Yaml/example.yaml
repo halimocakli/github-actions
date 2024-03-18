@@ -1,0 +1,13 @@
+name:
+  environment: stagging
+
+colors:
+  - name: red
+    hex: ff0000
+    labels:
+      - experimental
+      - accessibility
+  - name: green
+    hex: 00ff00
+  - name: blue
+    hex: 0000ff
