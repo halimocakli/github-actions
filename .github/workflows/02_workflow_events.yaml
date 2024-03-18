@@ -1,7 +1,8 @@
 name: 02 - Workflow Events
 
-on: 
-    push:
+on:
+    # İlerleyen çalışmalarda bu workflow'un sürekli olarak tetiklenmemesi için push event'i yorum satırı haline getirildi.
+    # push:
 
     # Farkılı bir branch üzerinde çalışırken kod değişikliği yapıp main branch'ine pull request işlemi
     # gerçekleştirildiğinde "pull_request" event'i vasıtası ile action tetiklenir.
