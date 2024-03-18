@@ -16,6 +16,9 @@ jobs:
         runs-on: windows-latest
         steps:
             - name: Show OS
+              # Windows makine terminali bash scriptlerini algılamadığı için öncelikle "shell: bash" ifadesini eklemeliyiz.
+              # Böylece terminal bash scriplerini çalıştıracak şekilde konfigüre edilmiş olur. Bu sayede $RUNNER_OS ifadesi kullanılabilir olur.
+              shell: bash
               run: |
                 echo "This job is running on an Windows runner"
                 echo "1. Designation --> Runner OS: $RUNNER_OS"
