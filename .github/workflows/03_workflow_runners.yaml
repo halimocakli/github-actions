@@ -23,3 +23,12 @@ jobs:
                 echo "This job is running on an Windows runner"
                 echo "1. Designation --> Runner OS: $RUNNER_OS"
                 echo "2. Designation --> Runner OS: ${{ runner.os }}"
+
+    mac-echo:
+        runs-on: macos-latest
+        steps:
+            - name: Show OS
+              run: |
+                echo "This job is running on an MacOS runner"
+                echo "1. Designation --> Runner OS: $RUNNER_OS"
+                echo "2. Designation --> Runner OS: ${{ runner.os }}"
