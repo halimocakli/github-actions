@@ -1,6 +1,8 @@
 name: 01 - Building Blocks
 
-on: push
+# İlerleyen çalışmalarda bu workflow'un sürekli olarak tetiklenmemesi için push event'i yorum satırı haline getirildi.
+# on: push
+on: workflow_dispatch
 
 jobs:
     echo-hello:
