@@ -6,7 +6,8 @@ on:
 
     # Farkılı bir branch üzerinde çalışırken kod değişikliği yapıp main branch'ine pull request işlemi
     # gerçekleştirildiğinde "pull_request" event'i vasıtası ile action tetiklenir.
-    pull_request:
+
+    # pull_request:
 
     # "schedule" event'i belirli aralıklarla action'ın tetiklenmesini sağlar.
     # Bu tetikleme için aşağıdaki gibi bir cron ifadesi sağlanması gerekir.
