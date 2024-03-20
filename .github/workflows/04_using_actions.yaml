@@ -1,0 +1,10 @@
+name: 04 - Using Actions
+
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        # 1. React uygulaması için gerekli dependency'ler yüklenecek.
+        # 2. Otomatize edilmiş testler çalıştırılacak.
