@@ -7,6 +7,16 @@ on:
             debug:
                 type: boolean
                 default: false
+            
+            loglevel:
+                description: 'Log Level'
+                required: true
+                default: 'warning'
+                type: choice
+                options:
+                    - info
+                    - warning
+                    - debug
 
 env:
     MY_WORKFLOW_VAR: 'workflow'
