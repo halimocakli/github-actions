@@ -1,29 +1,29 @@
 name: 02 - Workflow Events
 
 on:
-    # İlerleyen çalışmalarda bu workflow'un sürekli olarak tetiklenmemesi için push event'i yorum satırı haline getirildi.
-    # push:
+  # İlerleyen çalışmalarda bu workflow'un sürekli olarak tetiklenmemesi için push event'i yorum satırı haline getirildi.
+  # push:
 
-    # Farkılı bir branch üzerinde çalışırken kod değişikliği yapıp main branch'ine pull request işlemi
-    # gerçekleştirildiğinde "pull_request" event'i vasıtası ile action tetiklenir.
+  # Farkılı bir branch üzerinde çalışırken kod değişikliği yapıp main branch'ine pull request işlemi
+  # gerçekleştirildiğinde "pull_request" event'i vasıtası ile action tetiklenir.
 
-    # pull_request:
+  # pull_request:
 
-    # "schedule" event'i belirli aralıklarla action'ın tetiklenmesini sağlar.
-    # Bu tetikleme için aşağıdaki gibi bir cron ifadesi sağlanması gerekir.
-    # Aşağıdaki cron ifadesi action'ın her beş dakikada bir tetiklenmesini sağlar.
-    # schedule event'in sürekli olarak çalışmaması için yorum satırı haline getirelim.
-    #
-    # schedule:
-    #     - cron: '*/5 * * * *'
+  # "schedule" event'i belirli aralıklarla action'ın tetiklenmesini sağlar.
+  # Bu tetikleme için aşağıdaki gibi bir cron ifadesi sağlanması gerekir.
+  # Aşağıdaki cron ifadesi action'ın her beş dakikada bir tetiklenmesini sağlar.
+  # schedule event'in sürekli olarak çalışmaması için yorum satırı haline getirelim.
+  #
+  # schedule:
+  #     - cron: '*/5 * * * *'
 
-    # "workflow_dispatch" event'i manuel tetikleme imkânı sağlar.
-    # Manuel tetikleme işlemini Github Actions sekmesi içerisindeki "02 - Workflow Events" action'unu seçerek gerçekleştirebiliriz.
-    workflow_dispatch:
+  # "workflow_dispatch" event'i manuel tetikleme imkânı sağlar.
+  # Manuel tetikleme işlemini Github Actions sekmesi içerisindeki "02 - Workflow Events" action'unu seçerek gerçekleştirebiliriz.
+  workflow_dispatch:
 
 jobs:
-    echo:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Show the trigger
-              run: echo "I've been triggered by a(n) ${{ github.event_name }} event"
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show the trigger
+        run: echo "I've been triggered by a(n) ${{ github.event_name }} event"

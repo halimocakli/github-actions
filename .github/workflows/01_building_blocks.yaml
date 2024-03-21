@@ -5,17 +5,17 @@ name: 01 - Building Blocks
 on: workflow_dispatch
 
 jobs:
-    echo-hello:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Say hello
-              run: echo "Hello, World!"
-    echo-goodbye:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Successful step
-              run: |
-                echo "I will succeed"
-                exit 0
-            - name: Say goodbye.
-              run: echo "Goodbye!"
+  echo-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, World!"
+  echo-goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Successful step
+        run: |
+          echo "I will succeed"
+          exit 0
+      - name: Say goodbye.
+        run: echo "Goodbye!"
