@@ -1,5 +1,5 @@
 name: 06 - Contexts
-run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}- 
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }} | Log Level - ${{ inputs.loglevel }} 
 
 on:
     workflow_dispatch:
