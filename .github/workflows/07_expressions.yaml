@@ -22,5 +22,5 @@ jobs:
       - name: "[debug] Print when triggered from main branch"
         if: inputs.debug && github.ref == 'refs/heads/main'
         run: echo "I have triggered from main branch"
-      - name:
+      - name: Greetings!
         run: echo "Hello, world!"
