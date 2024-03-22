@@ -1,0 +1,58 @@
+name: 08 - Using Variables
+
+on:
+  workflow_dispatch:
+
+env:
+  WORKFLOW_VAR: "I am workflow env var"
+  OVERWRITTEN_VAR: "I am going to be overwritten var"
+  UNDEFINED_VAR_WITH_DEFAULT: ${{ vars.UNDEFINED_VAR || 'Default Value' }}
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    env:
+      JOB_VAR: "I am a job env var"
+      OVERWRITTEN: "I have been overwritten at the job level"
+    steps:
+      - name: Print Env Variables
+        env:
+          STEP_VAR: "I am a step env var"
+          STEP_VAR_2: "I am another step env var"
+        run: |
+          echo "Step env var - 1: ${{ env.STEP_VAR }}"
+          echo "Step env var - 2: ${{ env.STEP_VAR_2 }}"
+          echo "Job env var: ${{ env.JOB_VAR }}"          
+          echo "Workflow env var: ${{ env.WORKFLOW_VAR }}"
+          echo "Overwritten: ${{ env.OVERWRITTEN }}"
+
+      - name: Overwrite Job Variable
+        env:
+          OVERWRITTEN: "I have been overwritten at the step level"
+        run: |
+          echo "Step env var: ${{ env.OVERWRITTEN }}"
+  echo-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Variables
+        run: |
+          echo "Organization var: ${{ vars.ORG_VAR || 'NO ORGANIZATION VAR EXIST'}}"
+          echo "Organization overwritten var: ${{ vars.OVERWRITTEN_VAR || 'NO OVERWRITTEN ORGANIZATION VAR EXIST'}}"
+          echo "Repository var: ${{ vars.REPOSITORY_VAR || 'NO REPOSITORY VAR EXIST'}}"
+
+  echo-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Print Prod Variables
+        run: |
+          echo "Organization var: ${{ vars.ORG_VAR || 'NO ORGANIZATION VAR EXIST'}}"
+          echo "Organization overwritten var: ${{ vars.OVERWRITTEN_VAR || 'NO OVERWRITTEN ORGANIZATION VAR EXIST'}}"
+          echo "Repository var: ${{ vars.REPOSITORY_VAR || 'NO REPOSITORY VAR EXIST'}}"
+          echo "Environment var: ${{ vars.ENVIRONMENT_VAR || 'NO ENVIRONMENT VAR EXIST'}}"
+  echo-undefined:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Undefined Variables
+        run: |
+          echo "Organization var: ${{ env.UNDEFINED_VAR_WITH_DEFAULT }}"
