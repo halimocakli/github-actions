@@ -9,7 +9,71 @@ jobs:
     steps:
       - name: Print PR Title
         run: echo "${{ github.event.pull_request.Title }}"
+
       - name: Print PR Labels
         run: |
           cat << EOF
           ${{ toJson(github.event.pull_request.Labels) }}
+
+      - name: Bug Step
+        if: ${{ !cancelled() && contains(github.event.pull_request.Title, 'fix') }}
+        run: echo "I am a bug fix step."
+
+      - name: Success Step
+        if: ${{ success() }}
+        run: echo "This message is gonna be printed if any previous steps succeed."
+
+      - name: Failure Step
+        if: ${{ failure() }}
+        run: echo "This message is gonna be printed if any previous step fails."
+
+      - name: "!cancelled() Step"
+        if: ${{ !cancelled() }}
+        run: echo "This message is always print, except when the workflow is cancelled"
+
+      - name: "cancelled() Step"
+        if: ${{ cancelled() }}
+        run: echo "This message is gonna be printed if the workflow has been cancelled"
+
+  Echo-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing Step
+        run: exit 1
+
+      - name: Success Step
+        if: ${{ success() }}
+        run: echo "This message is gonna be printed if any previous steps succeed."
+
+      - name: Failure Step
+        if: ${{ failure() }}
+        run: echo "This message is gonna be printed if any previous step fails."
+
+      - name: "!cancelled() Step"
+        if: ${{ !cancelled() }}
+        run: echo "This message is always print, except when the workflow is cancelled"
+
+      - name: "cancelled() Step"
+        if: ${{ cancelled() }}
+        run: echo "This message is gonna be printed if the workflow has been cancelled"
+
+  Echo-3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for 20 Seconds
+        run: sleep 20
+      - name: Success Step
+        if: ${{ success() }}
+        run: echo "This message is gonna be printed if any previous steps succeed."
+
+      - name: Failure Step
+        if: ${{ failure() }}
+        run: echo "This message is gonna be printed if any previous step fails."
+
+      - name: "!cancelled() Step"
+        if: ${{ !cancelled() }}
+        run: echo "This message is always print, except when the workflow is cancelled"
+
+      - name: "cancelled() Step"
+        if: ${{ cancelled() }}
+        run: echo "This message is gonna be printed if the workflow has been cancelled"
