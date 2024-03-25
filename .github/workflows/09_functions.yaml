@@ -57,7 +57,7 @@ jobs:
         if: ${{ cancelled() }}
         run: echo "This message is gonna be printed if the workflow has been cancelled"
 
-  Echo-3:
+  Echo-3-Testing-Worflow-Cancel:
     runs-on: ubuntu-latest
     steps:
       - name: Sleep for 20 Seconds
