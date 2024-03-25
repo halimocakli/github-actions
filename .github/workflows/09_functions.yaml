@@ -1,0 +1,11 @@
+name: 09 - Using Functions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Echo-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Title
+        run: echo "${{ github.event.pull_request.Title }}"
