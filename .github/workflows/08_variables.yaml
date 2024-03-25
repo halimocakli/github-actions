@@ -46,10 +46,10 @@ jobs:
     steps:
       - name: Print Prod Variables
         run: |
-          echo "Organization var: ${{ vars.ORG_VAR || 'NO ORGANIZATION VAR EXIST'}}"
-          echo "Organization overwritten var: ${{ vars.OVERWRITTEN_VAR || 'NO OVERWRITTEN ORGANIZATION VAR EXIST'}}"
-          echo "Repository var: ${{ vars.REPOSITORY_VAR || 'NO REPOSITORY VAR EXIST'}}"
-          echo "Environment var: ${{ vars.ENVIRONMENT_VAR || 'NO ENVIRONMENT VAR EXIST'}}"
+          echo "Prod Organization Var: ${{ vars.ORG_VAR || 'NO ORGANIZATION VAR EXIST'}}"
+          echo "Pron Environment Overwritten Var: ${{ vars.OVERWRITTEN_VAR || 'NO OVERWRITTEN ORGANIZATION VAR EXIST'}}"
+          echo "Repository Var: ${{ vars.REPOSITORY_VAR || 'NO REPOSITORY VAR EXIST'}}"
+          echo "Environment Var: ${{ vars.ENVIRONMENT_VAR || 'NO ENVIRONMENT VAR EXIST'}}"
   echo-undefined:
     runs-on: ubuntu-latest
     steps:
