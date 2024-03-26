@@ -18,6 +18,7 @@ jobs:
   unit-test:
     runs-on: ubuntu-latest
     # continue-on-error kullanımı sayesinde, unit-test gerçekleşmese bile CI/CD süreci devam edecek ve worklfow status'ü success olacaktır.
+    # unit test'in gerçekleşmesini istediğimiz için 'continue-on-error: true' ifadesini yorum satırı haline getiriyoruz.
     # continue-on-error: true
     steps:
       - name: Running Unit Tests
