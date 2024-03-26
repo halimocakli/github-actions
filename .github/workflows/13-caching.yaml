@@ -22,9 +22,6 @@ jobs:
       run:
         working-directory: 13-Caching/react-app
 
-    outputs:
-      deps-cache-key: ${{ steps.cache-key.outputs.CACHE_KEY }}
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -32,9 +29,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.node-version.options.default }}
+          node-version: ${{ inputs.node-version }}
+
+      - name: Download Cached Dependencies
+        uses: actions/cache@v3
+        if: ${{ inputs.use-cache }}
+        id: cache
+        with:
+          path: 13-Caching/react-app/node-modules
+          key: deps-node-modules-${{ hashFiles('13-Caching/react-app/package-lock.json')}}
 
       - name: Install Depenencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Testing
