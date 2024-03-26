@@ -16,6 +16,7 @@ jobs:
 
     outputs:
       build-status: ${{ steps.build-step.outputs.status }}
+      first-output: ${{ steps.build-step.outputs.first_output}}
 
     steps:
       - name: Print 'GITHUB_OUTPUT' Path
@@ -46,4 +47,4 @@ jobs:
 
       - name: Print Outputs
         run: |
-          echo "Output 1: ${{ needs.build.outputs.output1 }}"
+          echo "Output-1: ${{ needs.build.outputs.first-output }}"
