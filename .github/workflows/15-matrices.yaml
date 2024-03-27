@@ -7,6 +7,7 @@ jobs:
   backwards-compatibility:
     name: ${{ matrix.os }} - ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       matrix:
@@ -14,12 +15,15 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
+
         include:
           - os: ubuntu-latest
             node-version: 16.x
+
           - os: ubuntu-latest
             node-version: 21.x
             tag: experimental
+
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -37,3 +41,16 @@ jobs:
 
       - name: Upload Test Results
         run: echo "Uploading test results."
+
+  include-example:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        include:
+          - color: red
+            shape: triangle
