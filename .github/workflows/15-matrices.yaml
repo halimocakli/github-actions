@@ -5,8 +5,8 @@ on:
 
 jobs:
   backwards-compatibility:
-    name: ${{ matrix.os }}
-    runs-on: ${{ matrix.os }} - ${{ matrix.node-version }}
+    name: ${{ matrix.os }} - ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node-version: [18.x, 20.x, 21.x]
