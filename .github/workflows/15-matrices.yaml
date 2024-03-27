@@ -16,6 +16,62 @@ jobs:
           - ubuntu-latest
           - windows-latest
 
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Perform Some Tests
+        run: |
+          echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
+          sleep 10
+
+      - name: Upload Test Results
+        run: echo "Uploading test results."
+
+  include-example-1:
+    name: ${{ matrix.os }} - ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x, 20.x, 21.x]
+        os:
+          - ubuntu-latest
+          - windows-latest
+
+        include:
+          - os: ubuntu-latest
+            node-version: 16.x
+
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Perform Some Tests
+        run: |
+          echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
+          sleep 10
+
+      - name: Upload Test Results
+        run: echo "Uploading test results."
+
+  include-example-experimental-tag:
+    name: ${{ matrix.os }} - ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x, 20.x, 21.x]
+        os:
+          - ubuntu-latest
+          - windows-latest
+
         include:
           - os: ubuntu-latest
             node-version: 16.x
@@ -42,7 +98,7 @@ jobs:
       - name: Upload Test Results
         run: echo "Uploading test results."
 
-  include-example:
+  include-example-2:
     name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }}
     runs-on: ubuntu-latest
     strategy:
@@ -58,3 +114,105 @@ jobs:
     steps:
       - name: Dummy Step
         run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }}"
+
+  include-example-3:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        include:
+          - opacity: 50
+          - color: red
+            shape: triangle
+
+    steps:
+      - name: Dummy Step
+        run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }}" || ${{ matrix.opacity }}
+
+  include-example-4:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        include:
+          - opacity: 50
+          - color: red
+            opacity: 75
+          - color: red
+            shape: triangle
+
+    steps:
+      - name: Dummy Step
+        run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }}" || ${{ matrix.opacity }}
+
+  include-example-5:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        include:
+          - opacity: 50
+          - shape: circle
+            opacity: 100
+          - color: red
+            shape: triangle
+
+    steps:
+      - name: Dummy Step
+        run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }}" || ${{ matrix.opacity }}
+
+  include-example-6:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        include:
+          - opacity: 50
+          - color: red
+            opacity: 33
+          - shape: circle
+            opacity: 99
+          - color: red
+            shape: triangle
+
+    steps:
+      - name: Dummy Step
+        run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }}" || ${{ matrix.opacity }}
+
+  include-example-7:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        include:
+          - color: red
+            opacity: 33
+          - shape: circle
+            opacity: 99
+          - color: red
+            shape: triangle
+          - opacity: 50
+
+    steps:
+      - name: Dummy Step
+        run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }}" || ${{ matrix.opacity }}
