@@ -1,0 +1,65 @@
+name: 14 - Working with Artifacts
+
+on:
+  workflow_dispatch:
+
+env:
+  build-artifact-key: app-${{ github.sha }}
+  test-coverage-key: test-coverage-${{ github.sha }}
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 14-Artifacts/react-app
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
+      - name: Download Cached Dependencies
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: 14-Artifacts/react-app/node_modules
+          key: deps-node-modules-${{ hashFiles('14-Artifacts/react-app/package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Unit Tests
+        run: npm run test -- --coverage
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.test-coverage-key }}
+          path: 144-Artifacts/react-app/coverage
+
+      - name: Build Code
+        run: npm run build
+
+      - name: Upload Build Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.build-artifact-key }}
+          path: 14-Artifacts/react-app/builf
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test-build
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.build-artifact-key }}
+          path: build
+      - name: Show Folder Structure
+        run: ls -R
