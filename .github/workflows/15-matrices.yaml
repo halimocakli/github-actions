@@ -218,6 +218,24 @@ jobs:
         run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }} || ${{ matrix.opacity }}"
 
   exclude-example-1:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        exclude:
+          - color: green
+            shape: circle
+            size: large
+
+    steps:
+      - name: Dummy Step
+        run: echo "DUMMY STEP"
+
+  exclude-example-2:
     name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
     runs-on: ubuntu-latest
     strategy:
