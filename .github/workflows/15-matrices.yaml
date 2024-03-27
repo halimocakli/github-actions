@@ -216,3 +216,30 @@ jobs:
     steps:
       - name: Dummy Step
         run: echo "${{ matrix.color }} || ${{ matrix.shape }} || ${{ matrix.size }} || ${{ matrix.opacity }}"
+
+  exclude-example-1:
+    name: ${{ matrix.color }} x ${{ matrix.shape }} x ${{ matrix.size }} x ${{ matrix.opacity }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        color: [red, green]
+        shape: [circle, square]
+        size: [small, large]
+
+        exclude:
+          - color: green
+            shape: circle
+            size: large
+
+        include:
+          - color: red
+            opacity: 33
+          - shape: circle
+            opacity: 99
+          - color: red
+            shape: triangle
+          - opacity: 50
+
+    steps:
+      - name: Dummy Step
+        run: echo "DUMMY STEP"
