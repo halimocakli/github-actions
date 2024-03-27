@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.build-artifact-key }}
-          path: 14-Artifacts/react-app/builf
+          path: 14-Artifacts/react-app/build
 
   deploy:
     runs-on: ubuntu-latest
