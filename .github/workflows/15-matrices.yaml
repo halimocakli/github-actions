@@ -23,9 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Perform Some Tests
-        run: |
-          echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
-          sleep 10
+        run: echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
 
       - name: Upload Test Results
         run: echo "Uploading test results."
@@ -53,9 +51,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Perform Some Tests
-        run: |
-          echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
-          sleep 10
+        run: echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
 
       - name: Upload Test Results
         run: echo "Uploading test results."
@@ -86,14 +82,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Fail if Experimental
-        if: matrix.tag == 'experimental'
-        run: exit 1
+      #- name: Fail if Experimental
+      #  if: matrix.tag == 'experimental'
+      #  run: exit 1
 
       - name: Perform Some Tests
-        run: |
-          echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
-          sleep 10
+        run: echo "Running tests on OS - ${{ matrix.os }} and NodeJS - ${{ matrix.node-version }}"
 
       - name: Upload Test Results
         run: echo "Uploading test results."
