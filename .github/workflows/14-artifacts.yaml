@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.test-coverage-key }}
-          path: 144-Artifacts/react-app/coverage
+          path: 14-Artifacts/react-app/coverage
 
       - name: Build Code
         run: npm run build
