@@ -8,7 +8,7 @@ on:
         type: environment
         default: staging
 jobs:
-  echo:
+  echo-custom:
     runs-on: ubuntu-latest
     environment: ${{ inputs.target-env }}
     env:
@@ -17,3 +17,26 @@ jobs:
       - name: Echo Data
         run: |
           echo "Environment Variable: ${{ env.my_env_value }}"
+
+  deploy-staging:
+    needs: echo-custom
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Echo Data
+        run: echo "Deploying to Staging environment"
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    steps:
+      - name: E2E Tests
+        run: echo "Running E2e Tests"
+
+  deploy-prod:
+    needs: e2e-test
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Echo Data
+        run: echo "Deploying to Prod environment"
