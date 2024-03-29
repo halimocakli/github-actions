@@ -30,7 +30,7 @@ runs:
 
     - name: Cache dependencies
       id: cache
-      uses: action/cache@v3
+      uses: actions/cache@v3
       with:
         path: ${{ inputs.working-dir }}/node_modules
         key: node-modules-${{ inputs.target-env }}-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }}
