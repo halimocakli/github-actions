@@ -28,13 +28,13 @@ def ping_url(url, delay, max_trials):
     return False
 
 def run():
-    website_url = os.getenv('INPUT_WEBSITE_URL')
+    website_url = os.getenv("INPUT_URL")
     delay = int(os.getenv('INPUT_DELAY'))
     max_trials = int(os.getenv('INPUT_MAX_TRIALS'))
     
     website_reachable = ping_url(website_url, delay, max_trials)
     
-    set_output(os.getenv("GITHUB_OUTPUT"), "website_reachable", str(website_reachable))
+    set_output(os.getenv("GITHUB_OUTPUT"), "url_reachable", str(website_reachable))
     
     if not website_reachable:
         raise Exception(f"Website {website_url} is unreachable after {max_trials} trials")
