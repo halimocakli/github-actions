@@ -43,4 +43,4 @@ jobs:
         run: npm run build
 
       - name: Show Folder Contents
-        run: ls -la
+        run: cd ~; ls -la
