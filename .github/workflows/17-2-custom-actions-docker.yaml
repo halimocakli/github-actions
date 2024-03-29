@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       url:
+        description: URL to ping.
         type: choice
         options:
           - "https://www.google.com"
