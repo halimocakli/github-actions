@@ -40,7 +40,3 @@ runs:
       run: ${{ inputs.target-env == 'dev' && 'npm ci' || 'npm ci --omit=dev' }}
       shell: bash
       working-directory: ${{ inputs.working-dir }}
-
-    - name: Check if dependencies were installed
-      run: echo ::set-output name=installed-deps::${{ steps.cache.outputs.cache-hit != 'true' }}
-      shell: bash
