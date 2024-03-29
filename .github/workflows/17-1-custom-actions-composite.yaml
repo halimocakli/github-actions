@@ -1,0 +1,43 @@
+name: 17 - 1 - Custom Actions - Composite
+
+on:
+  workflow_dispatch:
+    inputs:
+      target-env:
+        description: Which environment to target for dependency installation
+        type: choice
+        options:
+          - dev
+          - prod
+
+env:
+  working-directory: 17-Custom-Actions/react-app
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node and NPM Dependencies
+        id: setup-deps
+        uses: ./.github/actions/composite-cache-deps
+        with:
+          node-version: 20.x
+          working-dir: ${{ env.working-directory }}
+          target-env: ${{ inputs.target-env }}
+
+      - name: Print Setup Deps Output
+        run: |
+          echo "Installed dependencies: ${{ steps.setup-deps.outputs.installed-deps }}"
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
